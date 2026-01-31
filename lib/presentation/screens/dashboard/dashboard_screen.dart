@@ -8,11 +8,10 @@ import 'package:idoc_admin_side/logic/blocs/dashboard/dashboard_bloc.dart';
 import 'package:idoc_admin_side/logic/blocs/dashboard/dashboard_event.dart';
 import 'package:idoc_admin_side/logic/blocs/dashboard/dashboard_state.dart';
 
-import 'widgets/dashboard_appbar.dart';
+import 'widgets/appbar/dashboard_appbar.dart';
 import 'widgets/dashboard_header.dart';
 import 'widgets/loading_widget.dart';
 import 'widgets/error_widget.dart' as custom;
-
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -39,8 +38,8 @@ class DashboardScreen extends StatelessWidget {
             );
           }
 
-          final data = state is DashboardLoaded 
-              ? state.data 
+          final data = state is DashboardLoaded
+              ? state.data
               : const DashboardData();
 
           return RefreshIndicator(
@@ -48,7 +47,7 @@ class DashboardScreen extends StatelessWidget {
               context.read<DashboardBloc>().add(const FetchAllDataEvent());
               await Future.delayed(const Duration(milliseconds: 500));
             },
-            color: const Color(0xFF6FCA78),
+            color: const Color.fromARGB(255, 76, 147, 209),
             child: SingleChildScrollView(
               physics: const AlwaysScrollableScrollPhysics(),
               child: Padding(
@@ -59,6 +58,7 @@ class DashboardScreen extends StatelessWidget {
                     const SizedBox(height: 10),
                     const DashboardHeader(),
                     const SizedBox(height: 30),
+                    // Doctors card - WITH gender breakdown
                     StatCardWidget(
                       title: 'Doctors',
                       total: data.totalDoctors,
@@ -66,17 +66,20 @@ class DashboardScreen extends StatelessWidget {
                       female: data.femaleDoctors,
                       color: const Color.fromARGB(255, 94, 170, 102),
                       icon: Symbols.stethoscope,
-                      imageUrl: 'https://media.istockphoto.com/id/147948536/photo/female-doctor-standing-with-arms-crossed-isolated.jpg?s=612x612&w=0&k=20&c=4RZPVLQUuBkP7qDwfpSwlJ8yTQNBqFPI94oJvHSZgvE=',
+                      imageUrl:
+                          'https://media.istockphoto.com/id/147948536/photo/female-doctor-standing-with-arms-crossed-isolated.jpg?s=612x612&w=0&k=20&c=4RZPVLQUuBkP7qDwfpSwlJ8yTQNBqFPI94oJvHSZgvE=',
+                      showGenderBreakdown: true, // Show male/female counts
                     ),
                     const SizedBox(height: 28),
+                    // Patients card - WITHOUT gender breakdown
                     StatCardWidget(
                       title: 'Patients',
                       total: data.totalPatients,
-                      male: data.malePatients,
-                      female: data.femalePatients,
                       color: const Color.fromARGB(255, 59, 122, 174),
                       icon: Icons.people,
-                      imageUrl: 'https://st2.depositphotos.com/1005435/6561/i/950/depositphotos_65615121-stock-photo-happy-man-isolated-full-body.jpg',
+                      imageUrl:
+                          'https://st2.depositphotos.com/1005435/6561/i/950/depositphotos_65615121-stock-photo-happy-man-isolated-full-body.jpg',
+                      showGenderBreakdown: false, // Only show total count
                     ),
                     const SizedBox(height: 30),
                   ],

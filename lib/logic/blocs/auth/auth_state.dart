@@ -1,42 +1,53 @@
 import 'package:equatable/equatable.dart';
 
 abstract class AuthState extends Equatable {
-  const AuthState();
+  final bool isPasswordVisible;
+  final String username;
+  final String password;
+
+  const AuthState({
+    this.isPasswordVisible = true,
+    this.username = '',
+    this.password = '',
+  });
+
+  @override
+  List<Object?> get props => [isPasswordVisible, username, password];
+}
+
+class AuthUnauthenticated extends AuthState {
+  const AuthUnauthenticated({
+    super.isPasswordVisible,
+    super.username,
+    super.password,
+  });
+}
+
+class AuthLoading extends AuthState {
+  const AuthLoading({
+    super.isPasswordVisible,
+    super.username,
+    super.password,
+  });
+}
+
+class AuthAuthenticated extends AuthState {
+  const AuthAuthenticated();
 
   @override
   List<Object?> get props => [];
 }
 
-class AuthInitial extends AuthState {
-  const AuthInitial();
-}
-
-class AuthLoading extends AuthState {
-  const AuthLoading();
-}
-
-class AuthAuthenticated extends AuthState {
-  const AuthAuthenticated();
-}
-
-class AuthUnauthenticated extends AuthState {
-  final bool isPasswordVisible;
-
-  const AuthUnauthenticated({this.isPasswordVisible = false});
-
-  @override
-  List<Object?> get props => [isPasswordVisible];
-}
-
 class AuthError extends AuthState {
   final String message;
-  final bool isPasswordVisible;
 
   const AuthError({
     required this.message,
-    this.isPasswordVisible = false,
+    super.isPasswordVisible,
+    super.username,
+    super.password,
   });
 
   @override
-  List<Object?> get props => [message, isPasswordVisible];
+  List<Object?> get props => [message, isPasswordVisible, username, password];
 }

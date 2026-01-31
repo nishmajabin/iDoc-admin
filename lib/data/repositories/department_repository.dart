@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:idoc_admin_side/data/models/department.dart';
+import 'package:idoc_admin_side/data/models/department_model.dart';
 
 class CategoryRepository {
   final FirebaseFirestore _firestore;

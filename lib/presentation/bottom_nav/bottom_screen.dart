@@ -10,8 +10,8 @@ import 'package:idoc_admin_side/logic/blocs/log_out/logout_state.dart';
 import 'package:idoc_admin_side/presentation/bottom_nav/bottom_nav.dart';
 import 'package:idoc_admin_side/presentation/screens/auth/sign_in_screen.dart';
 import 'package:idoc_admin_side/presentation/screens/dashboard/dashboard_screen.dart';
+import 'package:idoc_admin_side/presentation/screens/doctors/applications/doctor_applicaitons/doctor_applications_screen.dart';
 import 'package:idoc_admin_side/presentation/screens/services/add_service/add_services_screen.dart';
-import 'package:idoc_admin_side/presentation/screens/doctors/doctors_screen.dart';
 import 'package:idoc_admin_side/presentation/screens/users/users_screen.dart';
 
 class BottomScreen extends StatelessWidget {
@@ -114,7 +114,7 @@ class BottomScreen extends StatelessWidget {
       case 1:
         return const UsersScreen();
       case 2:
-        return const DoctorsScreen();
+        return const DoctorApplications();
       case 3:
         return  AddServicesScreen();
       default:

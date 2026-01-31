@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:idoc_admin_side/data/repositories/application_repository.dart';
 import 'package:idoc_admin_side/data/repositories/dashboard_repository.dart';
 import 'package:idoc_admin_side/firebase_options.dart';
+import 'package:idoc_admin_side/logic/blocs/applications/application_bloc.dart';
 import 'package:idoc_admin_side/logic/blocs/auth/auth_bloc.dart';
 import 'package:idoc_admin_side/logic/blocs/bottom_nav/bottom_nav_bloc.dart';
 import 'package:idoc_admin_side/logic/blocs/dashboard/dashboard_bloc.dart';
@@ -18,7 +20,6 @@ import 'package:idoc_admin_side/presentation/screens/splash/splash_screen.dart';
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  // await setupAdmin();
   runApp(IdocAdmin());
 }
 
@@ -36,6 +37,7 @@ class IdocAdmin extends StatelessWidget {
         BlocProvider(create: (context) => DashboardBloc(repository: DashboardRepository())),
         BlocProvider(create: (context) => NavHoverBloc()),
         BlocProvider(create: (context) => CategoryBloc()),
+        BlocProvider(create: (context) => ApplicationBloc(repository: ApplicationRepository())),
       ],
       child: MaterialApp(
         title: 'iDoc Admin',

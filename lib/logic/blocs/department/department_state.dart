@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:equatable/equatable.dart';
-import 'package:idoc_admin_side/data/models/department.dart';
+import 'package:idoc_admin_side/data/models/department_model.dart';
 
 abstract class CategoryState extends Equatable {
   const CategoryState();

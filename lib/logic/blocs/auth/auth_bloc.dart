@@ -1,16 +1,21 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'auth_event.dart';
 import 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  bool _isPasswordVisible = true;
+  final FirebaseAuth _firebaseAuth;
 
-  AuthBloc() : super(const AuthUnauthenticated()) {
+  AuthBloc({FirebaseAuth? firebaseAuth})
+      : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
+        super(const AuthUnauthenticated()) {
     on<CheckLoginStatusEvent>(_onCheckLoginStatus);
     on<LoginEvent>(_onLogin);
-    on<LogoutEvent>(_onLogout);
     on<TogglePasswordVisibilityEvent>(_onTogglePasswordVisibility);
+    on<UpdateUsernameEvent>(_onUpdateUsername);
+    on<UpdatePasswordEvent>(_onUpdatePassword);
+    on<ClearLoginFieldsEvent>(_onClearLoginFields);
   }
 
   Future<void> _onCheckLoginStatus(
@@ -24,13 +29,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if (isLoggedIn) {
         emit(const AuthAuthenticated());
       } else {
-        emit(AuthUnauthenticated(isPasswordVisible: _isPasswordVisible));
+        emit(const AuthUnauthenticated());
       }
     } catch (e) {
-      emit(AuthError(
-        message: 'Error checking login status',
-        isPasswordVisible: _isPasswordVisible,
-      ));
+      emit(const AuthError(message: 'Error checking login status'));
     }
   }
 
@@ -38,40 +40,32 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     LoginEvent event,
     Emitter<AuthState> emit,
   ) async {
-    emit(const AuthLoading());
+    emit(AuthLoading(
+      isPasswordVisible: state.isPasswordVisible,
+      username: state.username,
+      password: state.password,
+    ));
 
     try {
-      if (event.username == "admin" && event.password == "admin123") {
+      // Simple admin check
+      if (event.username.trim() == "admin" && event.password.trim() == "admin123") {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setBool('isLoggedIn', true);
         emit(const AuthAuthenticated());
       } else {
         emit(AuthError(
-          message: 'username and password is not correct',
-          isPasswordVisible: _isPasswordVisible,
+          message: 'Username and password is not correct',
+          isPasswordVisible: state.isPasswordVisible,
+          username: state.username,
+          password: state.password,
         ));
       }
     } catch (e) {
       emit(AuthError(
         message: 'An error occurred during login',
-        isPasswordVisible: _isPasswordVisible,
-      ));
-    }
-  }
-
-  Future<void> _onLogout(
-    LogoutEvent event,
-    Emitter<AuthState> emit,
-  ) async {
-    try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.remove('isLoggedIn');
-      _isPasswordVisible = true;
-      emit(AuthUnauthenticated(isPasswordVisible: _isPasswordVisible));
-    } catch (e) {
-      emit(AuthError(
-        message: 'Error during logout',
-        isPasswordVisible: _isPasswordVisible,
+        isPasswordVisible: state.isPasswordVisible,
+        username: state.username,
+        password: state.password,
       ));
     }
   }
@@ -80,15 +74,74 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     TogglePasswordVisibilityEvent event,
     Emitter<AuthState> emit,
   ) {
-    _isPasswordVisible = !_isPasswordVisible;
-    
     if (state is AuthUnauthenticated) {
-      emit(AuthUnauthenticated(isPasswordVisible: _isPasswordVisible));
+      emit(AuthUnauthenticated(
+        isPasswordVisible: !state.isPasswordVisible,
+        username: state.username,
+        password: state.password,
+      ));
     } else if (state is AuthError) {
       final currentState = state as AuthError;
       emit(AuthError(
         message: currentState.message,
-        isPasswordVisible: _isPasswordVisible,
+        isPasswordVisible: !state.isPasswordVisible,
+        username: state.username,
+        password: state.password,
+      ));
+    }
+  }
+
+  void _onUpdateUsername(
+    UpdateUsernameEvent event,
+    Emitter<AuthState> emit,
+  ) {
+    if (state is AuthUnauthenticated) {
+      emit(AuthUnauthenticated(
+        isPasswordVisible: state.isPasswordVisible,
+        username: event.username,
+        password: state.password,
+      ));
+    } else if (state is AuthError) {
+      final currentState = state as AuthError;
+      emit(AuthError(
+        message: currentState.message,
+        isPasswordVisible: state.isPasswordVisible,
+        username: event.username,
+        password: state.password,
+      ));
+    }
+  }
+
+  void _onUpdatePassword(
+    UpdatePasswordEvent event,
+    Emitter<AuthState> emit,
+  ) {
+    if (state is AuthUnauthenticated) {
+      emit(AuthUnauthenticated(
+        isPasswordVisible: state.isPasswordVisible,
+        username: state.username,
+        password: event.password,
+      ));
+    } else if (state is AuthError) {
+      final currentState = state as AuthError;
+      emit(AuthError(
+        message: currentState.message,
+        isPasswordVisible: state.isPasswordVisible,
+        username: state.username,
+        password: event.password,
+      ));
+    }
+  }
+
+  void _onClearLoginFields(
+    ClearLoginFieldsEvent event,
+    Emitter<AuthState> emit,
+  ) {
+    if (state is AuthUnauthenticated || state is AuthError) {
+      emit(const AuthUnauthenticated(
+        isPasswordVisible: true,
+        username: '',
+        password: '',
       ));
     }
   }

@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
 
-class ImageSection extends StatelessWidget {
+class StatCardImage extends StatelessWidget {
   final String imageUrl;
   final Color color;
   final IconData icon;
+  final bool isCompact;
 
-  const ImageSection({
+  const StatCardImage({
+    super.key,
     required this.imageUrl,
     required this.color,
     required this.icon,
+    this.isCompact = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 280,
+      height: isCompact ? 200 : 280,
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [color.withValues(alpha: 0.1), Colors.white],
+          colors: [color.withOpacity(0.1), Colors.white],
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
         ),

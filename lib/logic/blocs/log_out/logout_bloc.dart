@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:idoc_admin_side/logic/blocs/log_out/logout_event.dart';
 import 'package:idoc_admin_side/logic/blocs/log_out/logout_state.dart';
 
@@ -20,8 +21,12 @@ class LogoutBloc extends Bloc<LogoutEvent, LogoutState> {
     emit(const LogoutLoading());
 
     try {
+      // Clear SharedPreferences
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.remove('isLoggedIn');
+      await prefs.clear(); // Optional: clear all preferences
 
-      // Sign out from Firebase
+      // Sign out from Firebase (if using Firebase elsewhere)
       await _firebaseAuth.signOut();
 
       emit(const LogoutSuccess(message: 'Logged out successfully'));

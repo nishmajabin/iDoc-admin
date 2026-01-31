@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 import 'avatar_widget.dart';
 import 'doctor_details_dialog.dart';
 
-class DoctorCard extends StatelessWidget {
+class DoctorCards extends StatelessWidget {
   final Map<String, dynamic> doctor;
   final String categoryName;
 
-  const DoctorCard({
-    Key? key,
-    required this.doctor,
-    required this.categoryName,
-  }) : super(key: key);
+  const DoctorCards({Key? key, required this.doctor, required this.categoryName})
+    : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +25,7 @@ class DoctorCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.06),
+            color: Colors.black.withValues(alpha: 0.06),
             blurRadius: 15,
             offset: const Offset(0, 4),
           ),
@@ -63,7 +61,7 @@ class DoctorCard extends StatelessWidget {
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF2D3748),
+                          color: primaryColor,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -74,7 +72,7 @@ class DoctorCard extends StatelessWidget {
                           Icon(
                             Icons.location_on,
                             size: 16,
-                            color: Colors.grey.shade600,
+                            color: locationColor,
                           ),
                           const SizedBox(width: 4),
                           Expanded(
@@ -82,7 +80,8 @@ class DoctorCard extends StatelessWidget {
                               place,
                               style: TextStyle(
                                 fontSize: 14,
-                                color: Colors.grey.shade600,
+                                fontWeight: FontWeight.bold,
+                                color: subtitleColor,
                               ),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
@@ -97,7 +96,7 @@ class DoctorCard extends StatelessWidget {
                           vertical: 6,
                         ),
                         decoration: BoxDecoration(
-                          color: const Color(0xFF6FCA78).withOpacity(0.1),
+                          color: const Color(0xFF6FCA78).withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Row(
@@ -126,7 +125,7 @@ class DoctorCard extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF6FCA78).withOpacity(0.1),
+                    color: const Color(0xFF6FCA78).withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: const Icon(

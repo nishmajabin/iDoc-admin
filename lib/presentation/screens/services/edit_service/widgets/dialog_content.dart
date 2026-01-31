@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:idoc_admin_side/data/models/department.dart';
+import 'package:idoc_admin_side/data/models/department_model.dart';
 import 'package:idoc_admin_side/presentation/screens/services/edit_service/widgets/category_name_field.dart';
 import 'package:idoc_admin_side/presentation/screens/services/edit_service/widgets/image_section.dart';
 

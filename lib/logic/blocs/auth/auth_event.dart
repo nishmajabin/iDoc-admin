@@ -7,6 +7,10 @@ abstract class AuthEvent extends Equatable {
   List<Object?> get props => [];
 }
 
+class CheckLoginStatusEvent extends AuthEvent {
+  const CheckLoginStatusEvent();
+}
+
 class LoginEvent extends AuthEvent {
   final String username;
   final String password;
@@ -20,14 +24,29 @@ class LoginEvent extends AuthEvent {
   List<Object?> get props => [username, password];
 }
 
-class LogoutEvent extends AuthEvent {
-  const LogoutEvent();
-}
-
 class TogglePasswordVisibilityEvent extends AuthEvent {
   const TogglePasswordVisibilityEvent();
 }
 
-class CheckLoginStatusEvent extends AuthEvent {
-  const CheckLoginStatusEvent();
+// NEW EVENTS FOR TEXT FIELD MANAGEMENT
+class UpdateUsernameEvent extends AuthEvent {
+  final String username;
+
+  const UpdateUsernameEvent(this.username);
+
+  @override
+  List<Object?> get props => [username];
+}
+
+class UpdatePasswordEvent extends AuthEvent {
+  final String password;
+
+  const UpdatePasswordEvent(this.password);
+
+  @override
+  List<Object?> get props => [password];
+}
+
+class ClearLoginFieldsEvent extends AuthEvent {
+  const ClearLoginFieldsEvent();
 }

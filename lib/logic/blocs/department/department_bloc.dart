@@ -1,7 +1,7 @@
 // lib/logic/blocs/category/category_bloc.dart
 import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:idoc_admin_side/data/models/department.dart';
+import 'package:idoc_admin_side/data/models/department_model.dart';
 import 'package:idoc_admin_side/data/repositories/department_repository.dart';
 import 'package:idoc_admin_side/data/services/image_service.dart';
 import 'package:idoc_admin_side/logic/blocs/department/department_event.dart';

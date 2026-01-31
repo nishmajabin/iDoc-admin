@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:idoc_admin_side/data/models/department.dart';
+import 'package:idoc_admin_side/data/models/department_model.dart';
 
 class EditCategoryImagePreview extends StatelessWidget {
   final Department category;

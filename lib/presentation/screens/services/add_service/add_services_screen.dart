@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 import 'package:idoc_admin_side/logic/blocs/department/department_bloc.dart';
 import 'package:idoc_admin_side/logic/blocs/department/department_event.dart';
 import 'package:idoc_admin_side/logic/blocs/department/department_state.dart';
@@ -16,7 +17,7 @@ class AddServicesScreen extends StatelessWidget {
     context.read<CategoryBloc>().add(const LoadCategoriesEvent());
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F7FA),
+      backgroundColor: const Color.fromARGB(255, 231, 241, 255),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -24,7 +25,7 @@ class AddServicesScreen extends StatelessWidget {
         title: const Text(
           'Categories',
           style: TextStyle(
-            color: Color(0xFF2D3748),
+            color: primaryColor,
             fontSize: 22,
             fontWeight: FontWeight.bold,
           ),
