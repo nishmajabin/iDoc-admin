@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 import 'package:idoc_admin_side/logic/blocs/applications/application_bloc.dart';
 import 'package:idoc_admin_side/logic/blocs/applications/application_event.dart';
 
@@ -19,7 +20,7 @@ class RejectDialogWidget extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       title: Row(
         children: [
-          Icon(Icons.warning_amber_rounded, color: Colors.orange.shade700),
+          Icon(Icons.warning_amber_rounded, color: alertBoxColor),
           const SizedBox(width: 12),
           const Expanded(
             child: Text("Confirm Rejection", overflow: TextOverflow.ellipsis),
@@ -33,17 +34,17 @@ class RejectDialogWidget extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: Text("Cancel", style: TextStyle(color: Colors.grey.shade600)),
+          child: Text("Cancel", style: TextStyle(color: unselectedColor)),
         ),
         ElevatedButton(
           onPressed: () {
             context.read<ApplicationBloc>().add(
-              DeleteApplication(docId: doctorId),
+              DeleteApplication( doctorId),
             );
             Navigator.of(context).pop();
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.red.shade600,
+            backgroundColor: errorOutlineColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),

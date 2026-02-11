@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 
 class StatCardImage extends StatelessWidget {
   final String imageUrl;
@@ -20,7 +21,7 @@ class StatCardImage extends StatelessWidget {
       height: isCompact ? 200 : 280,
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [color.withOpacity(0.1), Colors.white],
+          colors: [color.withValues(alpha: 0.1), bgColor],
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
         ),
@@ -44,7 +45,7 @@ class StatCardImage extends StatelessWidget {
           },
           errorBuilder: (context, error, stackTrace) {
             return Center(
-              child: Icon(icon, size: 60, color: color.withOpacity(0.3)),
+              child: Icon(icon, size: 60, color: color.withValues(alpha: 0.3)),
             );
           },
         ),

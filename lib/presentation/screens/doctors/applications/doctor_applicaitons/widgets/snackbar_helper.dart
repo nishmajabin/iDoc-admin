@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 
 class SnackBarHelper {
   static void showSuccessSnackBar(BuildContext context, String message) {
@@ -6,12 +7,12 @@ class SnackBarHelper {
       SnackBar(
         content: Row(
           children: [
-            const Icon(Icons.check_circle, color: Colors.white),
+            const Icon(Icons.check_circle, color: successColor),
             const SizedBox(width: 12),
-            Expanded(child: Text(message)),
+            Expanded(child: Text(message, style: TextStyle(color: primaryColor),)),
           ],
         ),
-        backgroundColor: Colors.orange.shade600,
+        backgroundColor: brColor,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
@@ -23,12 +24,12 @@ class SnackBarHelper {
       SnackBar(
         content: Row(
           children: [
-            const Icon(Icons.error_outline, color: Colors.white),
+            const Icon(Icons.error_outline, color: buttonErrorColor),
             const SizedBox(width: 12),
-            Expanded(child: Text(message)),
+            Expanded(child: Text(message, style: (TextStyle(color: primaryColor)))),
           ],
         ),
-        backgroundColor: Colors.red.shade600,
+        backgroundColor: bgColor,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),

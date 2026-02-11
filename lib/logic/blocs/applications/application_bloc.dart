@@ -14,6 +14,8 @@ class ApplicationBloc extends Bloc<ApplicationEvent, ApplicationState> {
     on<SelectApplication>(_onSelectApplication);
     on<DeleteApplication>(_onDeleteApplication);
     on<ApproveDoctor>(_onApproveDoctor);
+    on<BlockDoctor>(_onBlockDoctor);
+    on<UnblockDoctor>(_onUnblockDoctor);
     on<_ApplicationsUpdated>(_onApplicationsUpdated);
   }
 
@@ -76,6 +78,42 @@ class ApplicationBloc extends Bloc<ApplicationEvent, ApplicationState> {
       await repository.approveDoctor(event.docId);
       
       emit(const DoctorApproved(message: 'Doctor approved successfully'));
+      
+      // Reload applications to reflect changes
+      add(LoadApplications());
+    } catch (e) {
+      emit(ApplicationError(message: e.toString()));
+    }
+  }
+
+  Future<void> _onBlockDoctor(
+    BlockDoctor event,
+    Emitter<ApplicationState> emit,
+  ) async {
+    try {
+      emit(ApplicationLoading());
+      
+      await repository.blockDoctor(event.docId, reason: event.reason);
+      
+      emit(const DoctorBlocked(message: 'Doctor blocked successfully'));
+      
+      // Reload applications to reflect changes
+      add(LoadApplications());
+    } catch (e) {
+      emit(ApplicationError(message: e.toString()));
+    }
+  }
+
+  Future<void> _onUnblockDoctor(
+    UnblockDoctor event,
+    Emitter<ApplicationState> emit,
+  ) async {
+    try {
+      emit(ApplicationLoading());
+      
+      await repository.unblockDoctor(event.docId);
+      
+      emit(const DoctorUnblocked(message: 'Doctor unblocked successfully'));
       
       // Reload applications to reflect changes
       add(LoadApplications());

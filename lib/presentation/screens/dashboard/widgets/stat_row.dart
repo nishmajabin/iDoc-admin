@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 
 class StatRowWidget extends StatelessWidget {
   final String label;
@@ -16,14 +17,14 @@ class StatRowWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(icon, color: Colors.white.withOpacity(0.9), size: 20),
+        Icon(icon, color: bgColor.withValues(alpha: 0.9), size: 20),
         const SizedBox(width: 12),
         Text(
           '$label:',
           style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w600,
-            color: Colors.white.withOpacity(0.9),
+            color: bgColor.withValues(alpha: 0.9),
             letterSpacing: 1,
           ),
         ),
@@ -31,7 +32,7 @@ class StatRowWidget extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.2),
+            color: bgColor.withValues(alpha: 0.2),
             borderRadius: BorderRadius.circular(20),
           ),
           child: Text(
@@ -39,7 +40,7 @@ class StatRowWidget extends StatelessWidget {
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: bgColor,
             ),
           ),
         ),

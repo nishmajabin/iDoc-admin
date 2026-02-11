@@ -14,6 +14,10 @@ class DoctorApplicationModel {
   final String? licenseProofUrl;
   final String? profileImageUrl;
   final String status;
+  final double consultationFee;
+  final bool blocked; // New field for blocking functionality
+  final String? blockReason; // Optional reason for blocking
+  final DateTime? blockedAt; // When the doctor was blocked
   final DateTime createdAt;
   final DateTime? updatedAt;
 
@@ -31,11 +35,14 @@ class DoctorApplicationModel {
     this.licenseProofUrl,
     this.profileImageUrl,
     this.status = 'pending',
+    this.consultationFee = 0.0,
+    this.blocked = false, // Default to not blocked
+    this.blockReason,
+    this.blockedAt,
     DateTime? createdAt,
     this.updatedAt,
   }) : createdAt = createdAt ?? DateTime.now();
 
-  // Convert to Map for Firebase
   Map<String, dynamic> toMap() {
     return {
       'name': name,
@@ -50,19 +57,24 @@ class DoctorApplicationModel {
       'licenseProofUrl': licenseProofUrl,
       'profileImageUrl': profileImageUrl,
       'status': status,
+      'consultationFee': consultationFee,
+      'blocked': blocked,
+      'blockReason': blockReason,
+      'blockedAt': blockedAt != null ? Timestamp.fromDate(blockedAt!) : null,
       'createdAt': Timestamp.fromDate(createdAt),
       'updatedAt': updatedAt != null ? Timestamp.fromDate(updatedAt!) : null,
     };
   }
 
-  // Create from Firebase document
   factory DoctorApplicationModel.fromDocument(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
     return DoctorApplicationModel.fromMap(data, doc.id);
   }
 
-  // Create from Map
-  factory DoctorApplicationModel.fromMap(Map<String, dynamic> map, String documentId) {
+  factory DoctorApplicationModel.fromMap(
+    Map<String, dynamic> map,
+    String documentId,
+  ) {
     return DoctorApplicationModel(
       id: documentId,
       name: map['name'] ?? '',
@@ -77,12 +89,15 @@ class DoctorApplicationModel {
       licenseProofUrl: map['licenseProofUrl'],
       profileImageUrl: map['profileImageUrl'],
       status: map['status'] ?? 'pending',
+      consultationFee: (map['consultationFee'] ?? 0.0).toDouble(),
+      blocked: map['blocked'] ?? false,
+      blockReason: map['blockReason'],
+      blockedAt: (map['blockedAt'] as Timestamp?)?.toDate(),
       createdAt: (map['createdAt'] as Timestamp?)?.toDate() ?? DateTime.now(),
       updatedAt: (map['updatedAt'] as Timestamp?)?.toDate(),
     );
   }
 
-  // Create a copy with updated fields
   DoctorApplicationModel copyWith({
     String? id,
     String? name,
@@ -97,6 +112,10 @@ class DoctorApplicationModel {
     String? licenseProofUrl,
     String? profileImageUrl,
     String? status,
+    double? consultationFee,
+    bool? blocked,
+    String? blockReason,
+    DateTime? blockedAt,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
@@ -114,6 +133,10 @@ class DoctorApplicationModel {
       licenseProofUrl: licenseProofUrl ?? this.licenseProofUrl,
       profileImageUrl: profileImageUrl ?? this.profileImageUrl,
       status: status ?? this.status,
+      consultationFee: consultationFee ?? this.consultationFee,
+      blocked: blocked ?? this.blocked,
+      blockReason: blockReason ?? this.blockReason,
+      blockedAt: blockedAt ?? this.blockedAt,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
     );
@@ -121,6 +144,6 @@ class DoctorApplicationModel {
 
   @override
   String toString() {
-    return 'DoctorApplicationModel(id: $id, name: $name, email: $email, specialist: $specialist, status: $status)';
+    return 'DoctorApplicationModel(id: $id, name: $name, email: $email, specialist: $specialist, status: $status, blocked: $blocked, fee: ₹$consultationFee)';
   }
 }

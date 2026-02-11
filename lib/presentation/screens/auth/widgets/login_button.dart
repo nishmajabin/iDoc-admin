@@ -25,12 +25,12 @@ class LoginButton extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: onPressed,
                 style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.black,
+                  foregroundColor: bgColor,
+                  backgroundColor: blackColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25.0),
                     side: const BorderSide(
-                      color: Color(0xFF6AD2FF),
+                      color: borderColor,
                       width: 3.0,
                     ),
                   ),

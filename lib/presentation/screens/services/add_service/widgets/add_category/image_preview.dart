@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:idoc_admin_side/logic/blocs/department/department_bloc.dart';
-import 'package:idoc_admin_side/logic/blocs/department/department_event.dart';
+import 'package:idoc_admin_side/logic/blocs/category/category_bloc.dart';
+import 'package:idoc_admin_side/logic/blocs/category/category_event.dart';
 
 class ImagePreview extends StatelessWidget {
   final File image;

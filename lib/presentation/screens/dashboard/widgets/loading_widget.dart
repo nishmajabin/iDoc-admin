@@ -17,7 +17,7 @@ class LoadingWidget extends StatelessWidget {
           SizedBox(height: 16),
           Text(
             'Loading dashboard...',
-            style: TextStyle(color: Color(0xFF718096), fontSize: 14),
+            style: TextStyle(color: loadingColor, fontSize: 14),
           ),
         ],
       ),

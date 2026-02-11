@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 
 class InfoCardWidget extends StatelessWidget {
   const InfoCardWidget({
@@ -20,12 +21,12 @@ class InfoCardWidget extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: bgColor,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.grey.shade200),
+        border: Border.all(color: brColor),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.03),
+            color: blackColor.withValues(alpha: 0.03),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -36,7 +37,7 @@ class InfoCardWidget extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: color.withOpacity(0.1),
+              color: color.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Icon(icon, color: color, size: 24),
@@ -50,7 +51,7 @@ class InfoCardWidget extends StatelessWidget {
                   label,
                   style: TextStyle(
                     fontSize: 12,
-                    color: Colors.grey.shade600,
+                    color: unselectedColor,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

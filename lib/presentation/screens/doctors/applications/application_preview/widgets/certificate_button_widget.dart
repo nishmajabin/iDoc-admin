@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 import 'package:idoc_admin_side/presentation/screens/doctors/applications/certificate_preview/certificate_preview_screen.dart';
 
 class CertificateButtonWidget extends StatelessWidget {
@@ -56,7 +57,7 @@ class CertificateButtonWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
               BoxShadow(
-                color: Colors.blue.withValues(alpha: 0.3),
+                color: blueColor.withValues(alpha: 0.3),
                 blurRadius: 12,
                 offset: const Offset(0, 4),
               ),
@@ -69,7 +70,7 @@ class CertificateButtonWidget extends StatelessWidget {
               children: [
                 const Icon(
                   Icons.file_present_rounded,
-                  color: Colors.white,
+                  color: bgColor,
                   size: 20,
                 ),
                 const SizedBox(width: 8),
@@ -77,7 +78,7 @@ class CertificateButtonWidget extends StatelessWidget {
                   child: Text(
                     text,
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: bgColor,
                       fontWeight: FontWeight.w600,
                       fontSize: 14,
                     ),

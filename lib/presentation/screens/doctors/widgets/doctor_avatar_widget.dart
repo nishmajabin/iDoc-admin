@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 import 'package:idoc_admin_side/data/models/application_model.dart';
 
 class DoctorAvatarWidget extends StatelessWidget {
@@ -16,11 +17,11 @@ class DoctorAvatarWidget extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Colors.blue.shade400, Colors.purple.shade400],
+            colors: [doctorGradientClr1, doctorGradientClr2 ],
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.blue.withOpacity(0.3),
+              color: blueColor.withValues(alpha: 0.3),
               blurRadius: 12,
               offset: const Offset(0, 4),
             ),
@@ -29,7 +30,7 @@ class DoctorAvatarWidget extends StatelessWidget {
         padding: const EdgeInsets.all(3),
         child: CircleAvatar(
           radius: 35,
-          backgroundColor: Colors.white,
+          backgroundColor: bgColor,
           child: CircleAvatar(
             radius: 32,
             backgroundImage:
@@ -43,7 +44,7 @@ class DoctorAvatarWidget extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
-                        color: Colors.blue.shade700,
+                        color: buttonBorderColor,
                       ),
                     )
                     : null,

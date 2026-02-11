@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:idoc_admin_side/data/models/department_model.dart';
 import 'package:idoc_admin_side/data/repositories/department_repository.dart';
 import 'package:idoc_admin_side/data/services/image_service.dart';
-import 'package:idoc_admin_side/logic/blocs/department/department_event.dart';
-import 'package:idoc_admin_side/logic/blocs/department/department_state.dart';
+import 'package:idoc_admin_side/logic/blocs/category/category_event.dart';
+import 'package:idoc_admin_side/logic/blocs/category/category_state.dart';
 
 class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
   final CategoryRepository _repository;

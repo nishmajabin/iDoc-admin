@@ -4,12 +4,12 @@ class DashboardRepository {
   final FirebaseFirestore _firestore;
 
   DashboardRepository({FirebaseFirestore? firestore})
-      : _firestore = firestore ?? FirebaseFirestore.instance;
+    : _firestore = firestore ?? FirebaseFirestore.instance;
 
   Future<List<Map<String, dynamic>>> fetchDoctors() async {
     try {
       QuerySnapshot snapshot;
-      
+
       try {
         snapshot = await _firestore.collection('approveddoctors').get();
         if (snapshot.docs.isNotEmpty) {
@@ -33,9 +33,7 @@ class DashboardRepository {
   Future<List<Map<String, dynamic>>> fetchPatients() async {
     try {
       final snapshot = await _firestore.collection('users').get();
-      return snapshot.docs
-          .map((doc) => doc.data() as Map<String, dynamic>)
-          .toList();
+      return snapshot.docs.map((doc) => doc.data()).toList();
     } catch (e) {
       throw Exception('Error fetching patients: $e');
     }
@@ -46,9 +44,9 @@ class DashboardRepository {
     int female = 0;
 
     for (var item in data) {
-      final gender = (item['gender']?.toString() ?? 
-                      item['genter']?.toString() ?? '')
-                     .toLowerCase();
+      final gender =
+          (item['gender']?.toString() ?? item['genter']?.toString() ?? '')
+              .toLowerCase();
 
       if (gender.contains('male') && !gender.contains('female')) {
         male++;

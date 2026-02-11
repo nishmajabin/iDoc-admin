@@ -22,12 +22,12 @@ class DoctorCard extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Colors.white, boxColor.withValues(alpha: 0.3)],
+          colors: [bgColor, boxColor.withValues(alpha: 0.3)],
         ),
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: Colors.blue.withOpacity(0.1),
+            color: blueColor.withValues(alpha: 0.1),
             spreadRadius: 0,
             blurRadius: 12,
             offset: const Offset(0, 4),
@@ -126,7 +126,7 @@ class DoctorCard extends StatelessWidget {
                       isPrimary: true,
                       onPressed: () {
                         context.read<ApplicationBloc>().add(
-                          SelectApplication(application: doctor),
+                          SelectApplication(doctor),
                         );
                         Navigator.push(
                           context,

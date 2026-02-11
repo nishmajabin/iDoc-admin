@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 
 class StatCardHeader extends StatelessWidget {
   final String title;
@@ -17,10 +18,10 @@ class StatCardHeader extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.2),
+            color: bgColor.withValues(alpha: 0.2),
             borderRadius: BorderRadius.circular(12),
           ),
-          child: Icon(icon, color: Colors.white, size: 24),
+          child: Icon(icon, color: bgColor, size: 24),
         ),
         const SizedBox(width: 12),
         Flexible(
@@ -29,7 +30,7 @@ class StatCardHeader extends StatelessWidget {
             style: const TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: bgColor,
             ),
           ),
         ),

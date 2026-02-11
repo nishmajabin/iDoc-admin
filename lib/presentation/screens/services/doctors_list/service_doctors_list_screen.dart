@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:idoc_admin_side/core/constants/color.dart';
+import 'package:idoc_admin_side/data/models/application_model.dart';
 import 'widgets/doctors_card.dart';
 import 'widgets/empty_state_widget.dart';
 import 'widgets/error_state_widget.dart';
 
 class ServiceDoctorsListScreen extends StatelessWidget {
+  // final DoctorApplicationModel doctor;
   final String categoryName;
   final String categoryImage;
 
@@ -13,6 +15,7 @@ class ServiceDoctorsListScreen extends StatelessWidget {
     Key? key,
     required this.categoryName,
     required this.categoryImage,
+    // required this.doctor
   }) : super(key: key);
 
   @override
@@ -100,7 +103,10 @@ class ServiceDoctorsListScreen extends StatelessWidget {
           itemCount: doctors.length,
           itemBuilder: (context, index) {
             final doctor = doctors[index].data() as Map<String, dynamic>;
-            return DoctorCards(doctor: doctor, categoryName: categoryName);
+            return DoctorCards(
+              doctorApplication: DoctorApplicationModel.fromMap(doctor, doctors[index].id),
+              categoryName: categoryName,
+            );
           },
         );
       },

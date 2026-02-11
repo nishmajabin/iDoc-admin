@@ -29,10 +29,10 @@ class ModernButtonWidget extends StatelessWidget {
                 isPrimary
                     ? LinearGradient(colors: [primaryColor, gradientColor])
                     : null,
-            color: isPrimary ? null : Colors.red.shade50,
+            color: isPrimary ? null : errorBoxColor,
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: isPrimary ? Colors.blue.shade800 : Colors.red.shade300,
+              color: isPrimary ? buttonBorderColor: errorOutlineColor,
               width: 1.5,
             ),
           ),
@@ -42,7 +42,7 @@ class ModernButtonWidget extends StatelessWidget {
               Icon(
                 icon,
                 size: 18,
-                color: isPrimary ? Colors.white : Colors.red.shade700,
+                color: isPrimary ? bgColor : buttonErrorColor,
               ),
               const SizedBox(width: 6),
               Flexible(
@@ -51,7 +51,7 @@ class ModernButtonWidget extends StatelessWidget {
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 14,
-                    color: isPrimary ? Colors.white : Colors.red.shade700,
+                    color: isPrimary ? bgColor : buttonErrorColor,
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),

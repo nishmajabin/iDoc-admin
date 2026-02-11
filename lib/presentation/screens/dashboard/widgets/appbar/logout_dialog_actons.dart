@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 
 class LogoutDialogActions extends StatelessWidget {
   final VoidCallback onCancel;
@@ -18,7 +19,7 @@ class LogoutDialogActions extends StatelessWidget {
         TextButton(
           onPressed: onCancel,
           style: TextButton.styleFrom(
-            foregroundColor: Colors.grey.shade700,
+            foregroundColor: navDividerColor,
             padding: const EdgeInsets.symmetric(
               horizontal: 20,
               vertical: 12,
@@ -35,8 +36,8 @@ class LogoutDialogActions extends StatelessWidget {
         ElevatedButton(
           onPressed: onConfirm,
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.red,
-            foregroundColor: Colors.white,
+            backgroundColor: errorBgColor,
+            foregroundColor: bgColor,
             padding: const EdgeInsets.symmetric(
               horizontal: 20,
               vertical: 12,

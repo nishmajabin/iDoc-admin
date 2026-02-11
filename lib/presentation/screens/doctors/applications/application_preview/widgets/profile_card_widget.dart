@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 import 'package:idoc_admin_side/data/models/application_model.dart';
 
 class ProfileCardWidget extends StatelessWidget {
@@ -12,11 +13,11 @@ class ProfileCardWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: bgColor,
           borderRadius: BorderRadius.circular(24),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: blackColor.withValues(alpha: 0.1),
               blurRadius: 20,
               offset: const Offset(0, 10),
             ),
@@ -33,13 +34,13 @@ class ProfileCardWidget extends StatelessWidget {
                     shape: BoxShape.circle,
                     gradient: LinearGradient(
                       colors: [
-                        Colors.blue.shade400,
-                        Colors.purple.shade400,
+                        doctorGradientClr1,
+                        doctorGradientClr2,
                       ],
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.blue.withOpacity(0.3),
+                        color: blueColor.withValues(alpha: 0.3),
                         blurRadius: 20,
                         offset: const Offset(0, 8),
                       ),
@@ -48,7 +49,7 @@ class ProfileCardWidget extends StatelessWidget {
                   padding: const EdgeInsets.all(4),
                   child: CircleAvatar(
                     radius: 60,
-                    backgroundColor: Colors.white,
+                    backgroundColor: bgColor,
                     child: CircleAvatar(
                       radius: 56,
                       backgroundImage: doctor.profileImageUrl != null
@@ -83,8 +84,8 @@ class ProfileCardWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      Colors.blue.shade500,
-                      Colors.purple.shade500,
+                      doctorGradientClr1,
+                      doctorGradientClr2,
                     ],
                   ),
                   borderRadius: BorderRadius.circular(20),
@@ -94,7 +95,7 @@ class ProfileCardWidget extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: Colors.white,
+                    color: bgColor,
                   ),
                 ),
               ),
@@ -103,8 +104,8 @@ class ProfileCardWidget extends StatelessWidget {
                 "${doctor.bio} • ${doctor.experience} years experience",
                 style: TextStyle(
                   fontSize: 15,
-                  color: Colors.grey.shade700,
-                  height: 1.5,
+                  color: subtitleColor2,
+                  height: 1.5, 
                 ),
                 textAlign: TextAlign.center,
               ),

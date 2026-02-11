@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 import 'package:idoc_admin_side/logic/blocs/log_out/logout_bloc.dart';import 'package:idoc_admin_side/presentation/screens/dashboard/widgets/appbar/app_bar_logo.dart';
 import 'package:idoc_admin_side/presentation/screens/dashboard/widgets/appbar/logout_button.dart';
 import 'package:idoc_admin_side/presentation/screens/dashboard/widgets/appbar/logout_dialog.dart';
@@ -25,7 +26,7 @@ class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: bgColor,
       elevation: 0,
       centerTitle: true,
       title: const AppBarLogo(),
@@ -34,7 +35,7 @@ class DashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
       ],
       bottom: PreferredSize(
         preferredSize: const Size.fromHeight(1),
-        child: Container(color: Colors.grey.shade200, height: 1),
+        child: Container(color: appBarCtnColor, height: 1),
       ),
     );
   }

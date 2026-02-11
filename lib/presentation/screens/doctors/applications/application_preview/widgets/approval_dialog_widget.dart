@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 import 'package:idoc_admin_side/logic/blocs/applications/application_bloc.dart';
 import 'package:idoc_admin_side/logic/blocs/applications/application_event.dart';
 
@@ -19,7 +20,7 @@ class ApprovalDialogWidget extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       title: Row(
         children: [
-          Icon(Icons.check_circle_outline, color: Colors.green.shade700),
+          Icon(Icons.check_circle_outline, color: scaffoldSuccessColor),
           const SizedBox(width: 12),
           Expanded(
             child: Text("Confirm Approval", overflow: TextOverflow.ellipsis),
@@ -33,20 +34,20 @@ class ApprovalDialogWidget extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: Text("Cancel", style: TextStyle(color: Colors.grey.shade600)),
+          child: Text("Cancel", style: TextStyle(color: unselectedColor)),
         ),
         ElevatedButton(
           onPressed: () {
             Navigator.of(context).pop();
-            context.read<ApplicationBloc>().add(ApproveDoctor(docId: doctorId));
+            context.read<ApplicationBloc>().add(ApproveDoctor(doctorId));
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.green.shade600,
+            backgroundColor: scaffoldSuccessColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
           ),
-          child: const Text("Approve"),
+          child: const Text("Approve", style: TextStyle(color: bgColor)),
         ),
       ],
     );

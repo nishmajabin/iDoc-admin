@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:idoc_admin_side/logic/blocs/department/department_bloc.dart';
-import 'package:idoc_admin_side/logic/blocs/department/department_event.dart';
+import 'package:idoc_admin_side/logic/blocs/category/category_bloc.dart';
+import 'package:idoc_admin_side/logic/blocs/category/category_event.dart';
 import 'package:idoc_admin_side/presentation/screens/services/doctors_list/service_doctors_list_screen.dart';
 import 'package:idoc_admin_side/presentation/screens/services/edit_service/edit_service.dart';
 

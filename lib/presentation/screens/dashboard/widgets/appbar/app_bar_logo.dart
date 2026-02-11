@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 
 class AppBarLogo extends StatelessWidget {
   const AppBarLogo({super.key});
@@ -16,7 +17,7 @@ class AppBarLogo extends StatelessWidget {
           errorBuilder: (context, error, stackTrace) {
             return const Icon(
               Icons.local_hospital,
-              color: Color(0xFF6FCA78),
+              color: primaryColor,
               size: 32,
             );
           },

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 
 class EmptyStateWidget extends StatelessWidget {
   const EmptyStateWidget({super.key});
@@ -12,13 +13,13 @@ class EmptyStateWidget extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
-              color: Colors.blue.shade50,
+              color: emptyContainerColor,
               shape: BoxShape.circle,
             ),
             child: Icon(
               Icons.description_outlined,
               size: 64,
-              color: Colors.blue.shade300,
+              color: blueColor,
             ),
           ),
           const SizedBox(height: 24),
@@ -27,13 +28,13 @@ class EmptyStateWidget extends StatelessWidget {
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              color: Colors.black87,
+              color: blackColor,
             ),
           ),
           const SizedBox(height: 8),
           Text(
             "All applications have been processed",
-            style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
+            style: TextStyle(fontSize: 14, color: unselectedColor),
           ),
         ],
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 
 class LogoutButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -13,7 +14,7 @@ class LogoutButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 12),
       child: IconButton(
-        icon: const Icon(Icons.logout, color: Colors.red, size: 26),
+        icon: const Icon(Icons.logout, color: errorBgColor, size: 26),
         onPressed: onPressed,
         tooltip: 'Logout',
         splashRadius: 24,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 import 'package:idoc_admin_side/data/models/application_model.dart';
 import 'package:idoc_admin_side/presentation/screens/doctors/applications/application_preview/widgets/certificate_button_widget.dart';
 import 'package:idoc_admin_side/presentation/screens/doctors/applications/application_preview/widgets/info_card_widget.dart';
@@ -24,13 +25,13 @@ class ContactDetailsWidget extends StatelessWidget {
             icon: Icons.email_outlined,
             label: "Email",
             value: doctor.email,
-            color: Colors.blue,
+            color: blueColor,
           ),
           InfoCardWidget(
             icon: Icons.phone_outlined,
             label: "Phone",
             value: doctor.phone,
-            color: Colors.green,
+            color: successColor,
           ),
           InfoCardWidget(
             icon: Icons.medical_information_outlined,
@@ -42,13 +43,13 @@ class ContactDetailsWidget extends StatelessWidget {
             icon: Icons.person_outline,
             label: "Gender",
             value: doctor.gender,
-            color: Colors.purple,
+            color: purpleColor,
           ),
           InfoCardWidget(
             icon: Icons.location_on_outlined,
             label: "Location",
             value: doctor.place,
-            color: Colors.red,
+            color: errorBgColor,
           ),
           const SizedBox(height: 24),
           if (doctor.licenseProofUrl != null ||

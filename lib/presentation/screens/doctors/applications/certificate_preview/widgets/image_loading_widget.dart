@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 
 class ImageLoadingWidget extends StatelessWidget {
   const ImageLoadingWidget({super.key, required this.loadingProgress});
@@ -19,12 +20,12 @@ class ImageLoadingWidget extends StatelessWidget {
                       ? loadingProgress!.cumulativeBytesLoaded /
                           loadingProgress!.expectedTotalBytes!
                       : null,
-              valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
+              valueColor: const AlwaysStoppedAnimation<Color>(bgColor),
             ),
             const SizedBox(height: 20),
             const Text(
               'Loading image...',
-              style: TextStyle(color: Colors.white70, fontSize: 14),
+              style: TextStyle(color: imageErrorTextColor, fontSize: 14),
             ),
           ],
         ),

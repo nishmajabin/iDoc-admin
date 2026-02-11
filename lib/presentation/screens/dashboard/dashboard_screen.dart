@@ -21,7 +21,7 @@ class DashboardScreen extends StatelessWidget {
     context.read<DashboardBloc>().add(const FetchAllDataEvent());
 
     return Scaffold(
-      backgroundColor: primaryColor.withValues(alpha: 0.01),
+      backgroundColor: primaryColor.withValues(alpha: 0.09),
       appBar: const DashboardAppBar(),
       body: BlocBuilder<DashboardBloc, DashboardState>(
         builder: (context, state) {
@@ -32,15 +32,15 @@ class DashboardScreen extends StatelessWidget {
           if (state is DashboardError) {
             return custom.ErrorWidget(
               message: state.message,
-              onRetry: () => context.read<DashboardBloc>().add(
-                const FetchAllDataEvent(),
-              ),
+              onRetry:
+                  () => context.read<DashboardBloc>().add(
+                    const FetchAllDataEvent(),
+                  ),
             );
           }
 
-          final data = state is DashboardLoaded
-              ? state.data
-              : const DashboardData();
+          final data =
+              state is DashboardLoaded ? state.data : const DashboardData();
 
           return RefreshIndicator(
             onRefresh: () async {
@@ -58,24 +58,22 @@ class DashboardScreen extends StatelessWidget {
                     const SizedBox(height: 10),
                     const DashboardHeader(),
                     const SizedBox(height: 30),
-                    // Doctors card - WITH gender breakdown
                     StatCardWidget(
                       title: 'Doctors',
                       total: data.totalDoctors,
                       male: data.maleDoctors,
                       female: data.femaleDoctors,
-                      color: const Color.fromARGB(255, 94, 170, 102),
+                      color: doctorsStatColor,
                       icon: Symbols.stethoscope,
                       imageUrl:
                           'https://media.istockphoto.com/id/147948536/photo/female-doctor-standing-with-arms-crossed-isolated.jpg?s=612x612&w=0&k=20&c=4RZPVLQUuBkP7qDwfpSwlJ8yTQNBqFPI94oJvHSZgvE=',
                       showGenderBreakdown: true, // Show male/female counts
                     ),
                     const SizedBox(height: 28),
-                    // Patients card - WITHOUT gender breakdown
                     StatCardWidget(
                       title: 'Patients',
                       total: data.totalPatients,
-                      color: const Color.fromARGB(255, 59, 122, 174),
+                      color: patientsStatColor,
                       icon: Icons.people,
                       imageUrl:
                           'https://st2.depositphotos.com/1005435/6561/i/950/depositphotos_65615121-stock-photo-happy-man-isolated-full-body.jpg',

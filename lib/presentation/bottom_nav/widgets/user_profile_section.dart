@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 
 class UserProfileSection extends StatelessWidget {
   const UserProfileSection({super.key});
@@ -16,7 +17,7 @@ class UserProfileSection extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 50,
-            backgroundColor: Colors.white.withValues(alpha: 0.2),
+            backgroundColor: bgColor.withValues(alpha: 0.2),
             child: user?.photoURL != null
                 ? ClipOval(
                     child: Image.network(
@@ -29,14 +30,14 @@ class UserProfileSection extends StatelessWidget {
                 : const Icon(
                     Icons.person,
                     size: 50,
-                    color: Colors.white,
+                    color: bgColor,
                   ),
           ),
           const SizedBox(height: 16),
           Text(
             userName,
             style: const TextStyle(
-              color: Colors.white,
+              color: bgColor,
               fontSize: 18,
               fontWeight: FontWeight.w600,
             ),
@@ -46,7 +47,7 @@ class UserProfileSection extends StatelessWidget {
           Text(
             userEmail,
             style: TextStyle(
-              color: Colors.white.withValues(alpha: 0.7),
+              color: bgColor.withValues(alpha: 0.7),
               fontSize: 14,
               fontWeight: FontWeight.w400,
             ),

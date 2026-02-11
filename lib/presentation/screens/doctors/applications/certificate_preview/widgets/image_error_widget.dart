@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 
 class ImageErrorWidget extends StatelessWidget {
   const ImageErrorWidget({super.key});
@@ -15,12 +16,12 @@ class ImageErrorWidget extends StatelessWidget {
             SizedBox(height: 16),
             Text(
               'Failed to load image',
-              style: TextStyle(color: Colors.white70, fontSize: 16),
+              style: TextStyle(color: imageErrorTextColor, fontSize: 16),
             ),
             SizedBox(height: 8),
             Text(
               'Please check your connection',
-              style: TextStyle(color: Colors.white54, fontSize: 14),
+              style: TextStyle(color: imageErrorTextColor2, fontSize: 14),
             ),
           ],
         ),

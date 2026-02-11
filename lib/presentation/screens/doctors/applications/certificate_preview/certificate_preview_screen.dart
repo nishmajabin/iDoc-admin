@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 import 'package:idoc_admin_side/presentation/screens/doctors/applications/certificate_preview/widgets/certificate_info_bar_widget.dart';
 import 'package:idoc_admin_side/presentation/screens/doctors/applications/certificate_preview/widgets/image_error_widget.dart';
 import 'package:idoc_admin_side/presentation/screens/doctors/applications/certificate_preview/widgets/image_loading_widget.dart';
@@ -16,30 +17,30 @@ class CertificatePreviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: blackColor,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: transparentColor,
         elevation: 0,
         leading: IconButton(
           icon: Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
+              color: bgColor.withValues(alpha: 0.2),
               shape: BoxShape.circle,
               border: Border.all(
-                color: Colors.white.withOpacity(0.3),
+                color: bgColor.withValues(alpha: 0.3),
                 width: 1,
               ),
             ),
-            child: const Icon(Icons.close, color: Colors.white, size: 20),
+            child: const Icon(Icons.close, color: bgColor, size: 20),
           ),
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: Text(
           heading,
           style: const TextStyle(
-            color: Colors.white,
+            color: bgColor,
             fontWeight: FontWeight.w600,
             fontSize: 18,
           ),
@@ -60,7 +61,7 @@ class CertificatePreviewPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.white.withOpacity(0.1),
+                    color: bgColor.withValues(alpha: 0.1),
                     blurRadius: 30,
                     spreadRadius: 5,
                   ),

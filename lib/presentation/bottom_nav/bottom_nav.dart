@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:idoc_admin_side/core/constants/color.dart';
 import 'package:idoc_admin_side/presentation/bottom_nav/widgets/user_profile_section.dart';
 import 'package:idoc_admin_side/presentation/bottom_nav/widgets/logout_button.dart';
 import 'package:idoc_admin_side/presentation/bottom_nav/widgets/nav_items_list.dart';
@@ -25,11 +26,11 @@ class AdminBottomNavBar extends StatelessWidget {
   Widget _buildSideNavigation() {
     return Container(
       width: 280,
-      decoration: const BoxDecoration(color: Color(0xFF255267)),
+      decoration: const BoxDecoration(color: navBoxColor),
       child: Column(
         children: [
           const UserProfileSection(),
-          const Divider(height: 1, color: Colors.white24, thickness: 1),
+          const Divider(height: 1, color: navDividerColor, thickness: 1),
           Expanded(
             child: ListView(
               padding: const EdgeInsets.symmetric(vertical: 16),
@@ -39,7 +40,7 @@ class AdminBottomNavBar extends StatelessWidget {
               ),
             ),
           ),
-          const Divider(height: 1, color: Colors.white24, thickness: 1),
+          const Divider(height: 1, color: navDividerColor, thickness: 1),
           Padding(
             padding: const EdgeInsets.all(16),
             child: LogoutButton(onLogout: onLogout),
@@ -53,10 +54,10 @@ class AdminBottomNavBar extends StatelessWidget {
     return Container(
       height: 75,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: bgColor,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.1),
+            color: blackColor.withValues(alpha: 0.1),
             blurRadius: 10,
             offset: const Offset(0, -3),
           ),

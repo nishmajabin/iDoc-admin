@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:idoc_admin_side/core/constants/color.dart';
-import 'package:idoc_admin_side/logic/blocs/department/department_bloc.dart';
-import 'package:idoc_admin_side/logic/blocs/department/department_event.dart';
-import 'package:idoc_admin_side/logic/blocs/department/department_state.dart';
+import 'package:idoc_admin_side/logic/blocs/category/category_bloc.dart';
+import 'package:idoc_admin_side/logic/blocs/category/category_event.dart';
+import 'package:idoc_admin_side/logic/blocs/category/category_state.dart';
 import 'package:idoc_admin_side/presentation/screens/services/add_service/widgets/add_category/add_category_card.dart';
 import 'package:idoc_admin_side/presentation/screens/services/add_service/widgets/category_list.dart';
 

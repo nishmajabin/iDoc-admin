@@ -15,8 +15,7 @@ class LoginScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-
+          backgroundColor: bgColor,
           elevation: 3,
         ),
         body: BlocListener<AuthBloc, AuthState>(
@@ -30,7 +29,7 @@ class LoginScreen extends StatelessWidget {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(state.message),
-                  backgroundColor: Colors.red,
+                  backgroundColor: errorBgColor,
                   duration: const Duration(seconds: 3),
                 ),
               );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 
 class BottomNavItem extends StatelessWidget {
   final IconData icon;
@@ -23,14 +24,14 @@ class BottomNavItem extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(
-          color: isSelected ? const Color(0xFF4FC3F7) : Colors.transparent,
+          color: isSelected ? navItemColor : transparentColor,
           borderRadius: BorderRadius.circular(25),
         ),
         child: Row(
           children: [
             Icon(
               icon,
-              color: isSelected ? Colors.white : Colors.grey[600],
+              color: isSelected ? bgColor : unselectedColor,
               size: 26,
             ),
             if (isSelected && label.isNotEmpty) ...[
@@ -38,7 +39,7 @@ class BottomNavItem extends StatelessWidget {
               Text(
                 label,
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: bgColor,
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
                 ),

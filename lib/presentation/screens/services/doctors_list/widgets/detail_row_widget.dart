@@ -21,7 +21,7 @@ class DetailRowWidget extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: const Color(0xFF6FCA78).withOpacity(0.1),
+              color: const Color(0xFF6FCA78).withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Icon(

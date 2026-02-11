@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:idoc_admin_side/core/constants/color.dart';
+import 'package:idoc_admin_side/data/models/application_model.dart';
+import 'package:idoc_admin_side/logic/blocs/applications/application_bloc.dart';
+import 'package:idoc_admin_side/presentation/screens/doctors/applications/application_preview/application_preview.dart';
 import 'avatar_widget.dart';
-import 'doctor_details_dialog.dart';
 
 class DoctorCards extends StatelessWidget {
-  final Map<String, dynamic> doctor;
   final String categoryName;
+  final DoctorApplicationModel doctorApplication;
 
-  const DoctorCards({Key? key, required this.doctor, required this.categoryName})
-    : super(key: key);
+  const DoctorCards({
+    Key? key,
+    required this.categoryName,
+    required this.doctorApplication
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final String name = doctor['name'] ?? 'Unknown';
-    final String place = doctor['place'] ?? 'Location not specified';
-    final String experience = doctor['experience']?.toString() ?? 'N/A';
-    final String? profileImageUrl = doctor['profileImageUrl'];
-    final String gender = doctor['gender'] ?? 'Not specified';
+    final String name = doctorApplication.name;
+    final String place = doctorApplication.place;
+    final String experience = doctorApplication.experience.toString();
+    final String? profileImageUrl = doctorApplication.profileImageUrl;
+    final String gender = doctorApplication.gender;
 
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
@@ -35,7 +41,16 @@ class DoctorCards extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           onTap: () {
-            showDoctorDetailsDialog(context, doctor, categoryName);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder:
+                    (context) => BlocProvider.value(
+                      value: context.read<ApplicationBloc>(),
+                      child: ApplicationPreview(doctor: doctorApplication),
+                    ),
+              ),
+            );
           },
           borderRadius: BorderRadius.circular(20),
           child: Padding(
@@ -43,7 +58,7 @@ class DoctorCards extends StatelessWidget {
             child: Row(
               children: [
                 Hero(
-                  tag: 'doctor_${doctor['email']}',
+                  tag: 'doctor_${doctorApplication.email}',
                   child: AvatarWidget(
                     profileImageUrl: profileImageUrl,
                     name: name,

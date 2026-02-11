@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 
 class ErrorStateWidget extends StatelessWidget {
   const ErrorStateWidget({super.key, required this.onRetry});
@@ -11,11 +12,11 @@ class ErrorStateWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.refresh, size: 64, color: Colors.grey.shade400),
+          Icon(Icons.refresh, size: 64, color: imageErrorTextColor),
           const SizedBox(height: 16),
           Text(
             'Unable to load applications',
-            style: TextStyle(fontSize: 16, color: Colors.grey.shade600),
+            style: TextStyle(fontSize: 16, color: unselectedColor),
           ),
           const SizedBox(height: 16),
           ElevatedButton.icon(
@@ -23,7 +24,7 @@ class ErrorStateWidget extends StatelessWidget {
             icon: const Icon(Icons.refresh),
             label: const Text('Retry'),
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue.shade600,
+              backgroundColor: blueShade600,
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),

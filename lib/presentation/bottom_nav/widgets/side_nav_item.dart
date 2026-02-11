@@ -39,7 +39,7 @@ class SideNavItem extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
               decoration: BoxDecoration(
                 color:
-                    isSelected ? const Color(0xFFE8EAF6) : Colors.transparent,
+                    isSelected ? bgColor: transparentColor,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20),
                   bottomLeft: Radius.circular(20),
@@ -52,7 +52,7 @@ class SideNavItem extends StatelessWidget {
                     color:
                         isSelected
                             ? primaryColor
-                            : Colors.white.withValues(alpha: 0.7),
+                            : bgColor.withValues(alpha: 0.7),
                     size: 22,
                   ),
                   const SizedBox(width: 16),
@@ -62,7 +62,7 @@ class SideNavItem extends StatelessWidget {
                       color:
                           isSelected
                               ? primaryColor
-                              : Colors.white.withValues(alpha: 0.9),
+                              : bgColor.withValues(alpha: 0.9),
                       fontWeight:
                           isSelected ? FontWeight.w600 : FontWeight.w500,
                       fontSize: 16,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 
 class LoadingStateWidget extends StatelessWidget {
   const LoadingStateWidget({super.key});
@@ -10,12 +11,12 @@ class LoadingStateWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue.shade600),
+            valueColor: AlwaysStoppedAnimation<Color>(blueShade600),
           ),
           const SizedBox(height: 16),
           Text(
             'Loading applications...',
-            style: TextStyle(color: Colors.grey.shade600, fontSize: 14),
+            style: TextStyle(color: unselectedColor, fontSize: 14),
           ),
         ],
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:idoc_admin_side/core/constants/color.dart';
 import 'package:idoc_admin_side/logic/blocs/bottom_nav/bottom_nav_bloc.dart';
 import 'package:idoc_admin_side/logic/blocs/bottom_nav/bottom_nav_event.dart';
 import 'package:idoc_admin_side/logic/blocs/bottom_nav/bottom_nav_state.dart';
@@ -12,7 +13,7 @@ import 'package:idoc_admin_side/presentation/screens/auth/sign_in_screen.dart';
 import 'package:idoc_admin_side/presentation/screens/dashboard/dashboard_screen.dart';
 import 'package:idoc_admin_side/presentation/screens/doctors/applications/doctor_applicaitons/doctor_applications_screen.dart';
 import 'package:idoc_admin_side/presentation/screens/services/add_service/add_services_screen.dart';
-import 'package:idoc_admin_side/presentation/screens/users/users_screen.dart';
+import 'package:idoc_admin_side/presentation/screens/users/users_lists/users_list_screen.dart';
 
 class BottomScreen extends StatelessWidget {
   const BottomScreen({super.key});
@@ -29,7 +30,7 @@ class BottomScreen extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(state.message),
-              backgroundColor: Colors.green,
+              backgroundColor: successColor,
               duration: const Duration(seconds: 2),
             ),
           );
@@ -52,7 +53,7 @@ class BottomScreen extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(state.error),
-              backgroundColor: Colors.red,
+              backgroundColor: errorBgColor,
               duration: const Duration(seconds: 3),
             ),
           );
@@ -63,7 +64,7 @@ class BottomScreen extends StatelessWidget {
           if (isDesktop) {
             // Web/Desktop Layout with Side Navigation
             return Scaffold(
-              backgroundColor: const Color(0xFFE6EFF9),
+              backgroundColor: bgColor,
               body: Row(
                 children: [
                   AdminBottomNavBar(
@@ -92,7 +93,7 @@ class BottomScreen extends StatelessWidget {
           } else {
             // Mobile Layout with Bottom Navigation
             return Scaffold(
-              backgroundColor: const Color(0xFFE6EFF9),
+              backgroundColor: bgColor,
               body: _buildBody(state.currentIndex),
               bottomNavigationBar: AdminBottomNavBar(
                 currentIndex: state.currentIndex,
@@ -112,7 +113,7 @@ class BottomScreen extends StatelessWidget {
       case 0:
         return const DashboardScreen();
       case 1:
-        return const UsersScreen();
+        return const UsersListScreen();
       case 2:
         return const DoctorApplications();
       case 3:

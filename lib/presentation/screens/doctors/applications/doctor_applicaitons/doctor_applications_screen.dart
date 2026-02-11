@@ -11,6 +11,7 @@ import 'package:idoc_admin_side/presentation/screens/doctors/applications/doctor
 import 'package:idoc_admin_side/presentation/screens/doctors/applications/doctor_applicaitons/widgets/error_state_widget.dart';
 import 'package:idoc_admin_side/presentation/screens/doctors/applications/doctor_applicaitons/widgets/loading_state_widget.dart';
 import 'package:idoc_admin_side/presentation/screens/doctors/applications/doctor_applicaitons/widgets/snackbar_helper.dart';
+import 'package:idoc_admin_side/presentation/screens/fee_management/fee_management_screen.dart';
 
 class DoctorApplications extends StatelessWidget {
   const DoctorApplications({super.key});
@@ -35,7 +36,7 @@ class DoctorApplicationsView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.grey.shade50,
-        appBar: _buildAppBar(),
+        appBar: _buildAppBar(context),
         body: BlocConsumer<ApplicationBloc, ApplicationState>(
           listener: (context, state) {
             if (state is ApplicationDeleted) {
@@ -84,34 +85,73 @@ class DoctorApplicationsView extends StatelessWidget {
     );
   }
 
-  AppBar _buildAppBar() {
-    return AppBar(
-      title: Text(
-        "APPLICATIONS",
-        style: GoogleFonts.poppins(
-          color: primaryColor,
-          fontWeight: FontWeight.w600,
-          letterSpacing: 1.5,
-        ),
+  AppBar _buildAppBar(BuildContext context) {
+  return AppBar(
+    title: Text(
+      "APPLICATIONS",
+      style: GoogleFonts.poppins(
+        color: primaryColor,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 1.5,
       ),
-      centerTitle: true,
-      backgroundColor: Colors.white,
-      elevation: 0,
-      bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(1),
-        child: Container(
-          height: 1,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Colors.transparent,
-                Colors.blue.shade200,
-                Colors.transparent,
+    ),
+    centerTitle: true,
+    backgroundColor: Colors.white,
+    elevation: 0,
+    actions: [
+      PopupMenuButton<String>(
+        icon: Icon(Icons.more_vert, color: primaryColor),
+        tooltip: 'More options',
+        onSelected: (value) {
+          if (value == 'fee_management') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const FeeManagementScreen(),
+              ),
+            );
+          }
+        },
+        itemBuilder: (context) => [
+          PopupMenuItem(
+            value: 'fee_management',
+            child: Row(
+              children: [
+                Icon(
+                  Icons.account_balance_wallet_outlined,
+                  color: primaryColor,
+                  size: 20,
+                ),
+                const SizedBox(width: 12),
+                Text(
+                  'Manage Consultation Fees',
+                  style: GoogleFonts.poppins(fontSize: 14),
+                ),
               ],
             ),
           ),
+        ],
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
         ),
       ),
-    );
-  }
+      const SizedBox(width: 8),
+    ],
+    bottom: PreferredSize(
+      preferredSize: const Size.fromHeight(1),
+      child: Container(
+        height: 1,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Colors.transparent,
+              Colors.blue.shade200,
+              Colors.transparent,
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
+}
 }
