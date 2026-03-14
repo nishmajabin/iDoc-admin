@@ -59,7 +59,7 @@ class UserDetailSliverAppBar extends StatelessWidget {
           border: Border.all(color: Colors.white, width: 4),
           boxShadow: [
             BoxShadow(
-              color: blackColor.withOpacity(0.2),
+              color: blackColor.withValues(alpha: 0.2),
               blurRadius: 20,
               offset: const Offset(0, 8),
             ),
@@ -75,7 +75,7 @@ class UserDetailSliverAppBar extends StatelessWidget {
       return Icon(
         Icons.person,
         size: 60,
-        color: primaryColor.withOpacity(0.5),
+        color: primaryColor.withValues(alpha: 0.5),
       );
     }
 
@@ -85,7 +85,7 @@ class UserDetailSliverAppBar extends StatelessWidget {
       fadeInDuration: const Duration(milliseconds: 300),
       fadeOutDuration: const Duration(milliseconds: 300),
       placeholder: (context, url) => Container(
-        color: primaryColor.withOpacity(0.1),
+        color: primaryColor.withValues(alpha: 0.1),
         child: const Center(
           child: CircularProgressIndicator(
             strokeWidth: 2,

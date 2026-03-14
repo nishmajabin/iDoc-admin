@@ -67,14 +67,12 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     _animationTimer?.cancel();
     _completionTimer?.cancel();
     
-    // Check login status from SharedPreferences
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
       
       emit(SplashCompleted(isLoggedIn: isLoggedIn));
     } catch (e) {
-      // If there's an error, default to not logged in
       emit(const SplashCompleted(isLoggedIn: false));
     }
   }

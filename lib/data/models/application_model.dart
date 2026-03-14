@@ -15,9 +15,9 @@ class DoctorApplicationModel {
   final String? profileImageUrl;
   final String status;
   final double consultationFee;
-  final bool blocked; // New field for blocking functionality
-  final String? blockReason; // Optional reason for blocking
-  final DateTime? blockedAt; // When the doctor was blocked
+  final bool blocked; 
+  final String? blockReason; 
+  final DateTime? blockedAt; 
   final DateTime createdAt;
   final DateTime? updatedAt;
 
@@ -36,7 +36,7 @@ class DoctorApplicationModel {
     this.profileImageUrl,
     this.status = 'pending',
     this.consultationFee = 0.0,
-    this.blocked = false, // Default to not blocked
+    this.blocked = false, 
     this.blockReason,
     this.blockedAt,
     DateTime? createdAt,

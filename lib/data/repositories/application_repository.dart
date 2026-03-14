@@ -40,10 +40,8 @@ class ApplicationRepository {
     }
   }
 
-  /// Approve doctor with automatic fee calculation
   Future<void> approveDoctor(String docId) async {
     try {
-      // Get doctor's current data
       final doctorDoc = await _firestore.collection('doctors').doc(docId).get();
       
       if (!doctorDoc.exists) {
@@ -53,11 +51,9 @@ class ApplicationRepository {
       final doctorData = doctorDoc.data() as Map<String, dynamic>;
       final experience = doctorData['experience'] as int? ?? 0;
 
-      // Calculate consultation fee based on experience
       final consultationFee =
           await _feeSlabRepository.calculateConsultationFee(experience);
 
-      // Update doctor status and consultation fee
       await _firestore.collection('doctors').doc(docId).update({
         'status': 'approved',
         'consultationFee': consultationFee,
@@ -68,7 +64,6 @@ class ApplicationRepository {
     }
   }
 
-  /// Block a doctor with optional reason
   Future<void> blockDoctor(String docId, {String? reason}) async {
     try {
       final doctorDoc = await _firestore.collection('doctors').doc(docId).get();

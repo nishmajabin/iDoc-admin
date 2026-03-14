@@ -21,12 +21,10 @@ class LogoutBloc extends Bloc<LogoutEvent, LogoutState> {
     emit(const LogoutLoading());
 
     try {
-      // Clear SharedPreferences
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.remove('isLoggedIn');
-      await prefs.clear(); // Optional: clear all preferences
+      await prefs.clear(); 
 
-      // Sign out from Firebase (if using Firebase elsewhere)
       await _firebaseAuth.signOut();
 
       emit(const LogoutSuccess(message: 'Logged out successfully'));

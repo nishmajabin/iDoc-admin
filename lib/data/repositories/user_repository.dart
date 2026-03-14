@@ -8,7 +8,6 @@ class UserRepository {
   UserRepository({FirebaseFirestore? firestore})
       : _firestore = firestore ?? FirebaseFirestore.instance;
 
-  /// Get a stream of all users ordered by creation date
   Stream<List<UserModel>> getUsersStream() {
     return _firestore
         .collection('users')
@@ -18,7 +17,6 @@ class UserRepository {
             snapshot.docs.map((doc) => UserModel.fromFirestore(doc)).toList());
   }
 
-  /// Get all users as a one-time fetch
   Future<List<UserModel>> getUsers() async {
     final snapshot = await _firestore
         .collection('users')
@@ -30,7 +28,6 @@ class UserRepository {
         .toList();
   }
 
-  /// Get a single user by ID
   Future<UserModel?> getUserById(String userId) async {
     final doc = await _firestore.collection('users').doc(userId).get();
 
@@ -40,7 +37,6 @@ class UserRepository {
     return null;
   }
 
-  /// Update user status
   Future<UserModel?> updateUserStatus({
     required String userId,
     required bool isActive,
@@ -53,7 +49,6 @@ class UserRepository {
     return getUserById(userId);
   }
 
-  /// Update user data
   Future<void> updateUser(String userId, Map<String, dynamic> data) async {
     await _firestore.collection('users').doc(userId).update({
       ...data,
@@ -61,7 +56,6 @@ class UserRepository {
     });
   }
 
-  /// Delete user
   Future<void> deleteUser(String userId) async {
     await _firestore.collection('users').doc(userId).delete();
   }

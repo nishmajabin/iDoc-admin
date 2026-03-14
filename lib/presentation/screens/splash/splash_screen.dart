@@ -5,16 +5,12 @@ import 'package:idoc_admin_side/logic/blocs/splash/splash_event.dart';
 import 'package:idoc_admin_side/logic/blocs/splash/splash_state.dart';
 import 'package:idoc_admin_side/presentation/bottom_nav/bottom_screen.dart';
 import 'package:idoc_admin_side/presentation/screens/auth/sign_in_screen.dart';
-// Import your screens
-// import 'package:idoc_admin_side/views/screens/login/login_screen.dart';
-// import 'package:idoc_admin_side/views/widgets/BottomNav/bottomnav_widget.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Start the splash animation when screen builds
     context.read<SplashBloc>().add(const StartSplash());
 
     return Scaffold(
@@ -22,7 +18,6 @@ class SplashScreen extends StatelessWidget {
       body: BlocConsumer<SplashBloc, SplashState>(
         listener: (context, state) {
           if (state is SplashCompleted) {
-            // Navigate based on login status
             if (state.isLoggedIn) {
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(

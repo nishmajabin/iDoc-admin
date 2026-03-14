@@ -40,7 +40,6 @@ Map<String, dynamic> toMap() {
     };
   }
 
-  // To fetch data from the FireStore , like create UserModel from FireStore DocumentSnapshot
   factory UserModel.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
     return UserModel(
@@ -55,7 +54,6 @@ Map<String, dynamic> toMap() {
     );
   }
 
-  // To read data from local Storage or another Api like Create UserModel from Map
   factory UserModel.fromMap(Map<String, dynamic> map, String uid) {
     return UserModel(
       uid: uid,

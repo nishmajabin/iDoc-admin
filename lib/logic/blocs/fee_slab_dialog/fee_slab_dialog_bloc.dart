@@ -15,7 +15,6 @@ class FeeSlabDialogBloc extends Bloc<FeeSlabDialogEvent, FeeSlabDialogState> {
     emit(state.copyWith(isUnlimited: !state.isUnlimited));
   }
 
-  // NEW HANDLER - Add this to handle edit mode initialization
   void _onInitializeEditMode(
     InitializeEditMode event,
     Emitter<FeeSlabDialogState> emit,

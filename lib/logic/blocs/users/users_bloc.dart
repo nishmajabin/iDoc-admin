@@ -104,7 +104,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   ) {
     var filtered = users;
 
-    // Apply search filter
     if (searchQuery != null && searchQuery.isNotEmpty) {
       filtered = filtered.where((user) {
         final nameLower = user.name.toLowerCase();
@@ -117,16 +116,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
             addressLower.contains(queryLower);
       }).toList();
     }
-
-    // Apply status filter if needed
-    // if (statusFilter != null) {
-    //   filtered = filtered.where((user) {
-    //     if (statusFilter == 'active') return user.isActive == true;
-    //     if (statusFilter == 'inactive') return user.isActive == false;
-    //     return true;
-    //   }).toList();
-    // }
-
     return filtered;
   }
 

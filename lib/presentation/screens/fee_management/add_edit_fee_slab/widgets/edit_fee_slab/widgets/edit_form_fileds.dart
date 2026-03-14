@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:idoc_admin_side/logic/blocs/fee_slab_dialog/fee_slab_dialog_bloc.dart';
 import 'package:idoc_admin_side/logic/blocs/fee_slab_dialog/fee_slab_dialog_state.dart';
-import 'package:idoc_admin_side/presentation/screens/fee_management/add_edit_fee_slab/widgets/custom_slab_text_field.dart';
+import 'package:idoc_admin_side/presentation/screens/fee_management/add_edit_fee_slab/widgets/fee_slab_card/widgets/custom_slab_text_field.dart';
 import 'package:idoc_admin_side/presentation/screens/fee_management/add_edit_fee_slab/widgets/edit_fee_slab/widgets/edit_unlimited_checkbox.dart';
 
 class EditFormFields extends StatelessWidget {

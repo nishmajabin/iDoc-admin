@@ -8,7 +8,6 @@ class FeeSlabRepository {
   FeeSlabRepository({FirebaseFirestore? firestore})
       : _firestore = firestore ?? FirebaseFirestore.instance;
 
-  /// Stream of all fee slabs
   Stream<List<FeeSlabModel>> getFeeSlabsStream() {
     return _firestore
         .collection('feeSlabs')
@@ -21,7 +20,6 @@ class FeeSlabRepository {
     });
   }
 
-  /// Get all fee slabs (one-time fetch)
   Future<List<FeeSlabModel>> getFeeSlabs() async {
     try {
       final snapshot = await _firestore
@@ -38,10 +36,8 @@ class FeeSlabRepository {
     }
   }
 
-  /// Create new fee slab
   Future<void> createFeeSlab(FeeSlabModel feeSlab) async {
     try {
-      // Validate no overlapping ranges
       final overlaps = await _checkOverlappingRanges(
         feeSlab.minExperience,
         feeSlab.maxExperience,
@@ -58,14 +54,12 @@ class FeeSlabRepository {
     }
   }
 
-  /// Update existing fee slab
   Future<void> updateFeeSlab(FeeSlabModel feeSlab) async {
     try {
       if (feeSlab.id == null) {
         throw Exception('Fee slab ID is required for update');
       }
 
-      // Validate no overlapping ranges (excluding current slab)
       final overlaps = await _checkOverlappingRanges(
         feeSlab.minExperience,
         feeSlab.maxExperience,
@@ -88,7 +82,6 @@ class FeeSlabRepository {
     }
   }
 
-  /// Delete fee slab
   Future<void> deleteFeeSlab(String slabId) async {
     try {
       await _firestore.collection('feeSlabs').doc(slabId).delete();
@@ -98,12 +91,10 @@ class FeeSlabRepository {
     }
   }
 
-  /// Calculate consultation fee based on experience
   Future<double> calculateConsultationFee(int experience) async {
     try {
       final slabs = await getFeeSlabs();
 
-      // Find matching slab
       for (var slab in slabs) {
         if (experience >= slab.minExperience &&
             experience <= slab.maxExperience) {
@@ -111,15 +102,13 @@ class FeeSlabRepository {
         }
       }
 
-      // Default fee if no slab matches
       return 300.0;
     } catch (e) {
       log('Error calculating consultation fee: $e');
-      return 300.0; // Default fallback
+      return 300.0; 
     }
   }
 
-  /// Check for overlapping experience ranges
   Future<bool> _checkOverlappingRanges(
     int minExp,
     int maxExp, {
@@ -135,7 +124,6 @@ class FeeSlabRepository {
         final existingMin = data['minExperience'] as int;
         final existingMax = data['maxExperience'] as int;
 
-        // Check for overlap
         if ((minExp >= existingMin && minExp <= existingMax) ||
             (maxExp >= existingMin && maxExp <= existingMax) ||
             (minExp <= existingMin && maxExp >= existingMax)) {
@@ -150,11 +138,10 @@ class FeeSlabRepository {
     }
   }
 
-  /// Initialize default fee slabs (call once during setup)
   Future<void> initializeDefaultFeeSlabs() async {
     try {
       final existing = await getFeeSlabs();
-      if (existing.isNotEmpty) return; // Already initialized
+      if (existing.isNotEmpty) return; 
 
       final defaultSlabs = [
         FeeSlabModel(
@@ -174,7 +161,7 @@ class FeeSlabRepository {
         ),
         FeeSlabModel(
           minExperience: 11,
-          maxExperience: 999, // 999 represents "unlimited"
+          maxExperience: 999, 
           consultationFee: 700.0,
         ),
       ];

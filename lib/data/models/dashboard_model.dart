@@ -1,4 +1,3 @@
-// lib/data/models/dashboard_data.dart
 import 'package:idoc_admin_side/logic/blocs/dashboard/dashboard_state.dart';
 
 class DashboardData {

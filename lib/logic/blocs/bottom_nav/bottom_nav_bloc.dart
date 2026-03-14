@@ -12,10 +12,9 @@ class BottomNavBloc extends Bloc<BottomNavEvent, BottomNavState> {
     BottomNavTabChanged event,
     Emitter<BottomNavState> emit,
   ) async {
-    // Simply emit the new index without tracking previous index
     emit(BottomNavChanged(
       currentIndex: event.index,
-      previousIndex: 0, // Not needed for admin, but kept for compatibility
+      previousIndex: 0, 
     ));
   }
 

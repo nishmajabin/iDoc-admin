@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 const primaryColor = Color(0xFF052C40);
 const bgColor = Color.fromARGB(255, 255, 255, 255);
+const whiteColor = Colors.white;
 const appBarCtnColor = const Color(0xFFEEEEEE);
 const subtitleColor = Color(0xFF718096);
 const locationColor = Color.fromARGB(255, 35, 156, 255);
@@ -42,3 +43,4 @@ const subtitleColor2 = Color.fromRGBO(97, 97, 97, 1);
 const imageErrorTextColor = Colors.white70;
 const imageErrorTextColor2 = Colors.white54;
 const emptyContainerColor = Color.fromRGBO(227, 242, 253, 1);
+const buttonbgColor = const Color(0xFF052C40);
