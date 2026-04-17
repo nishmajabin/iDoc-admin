@@ -1,10 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:idoc_admin_side/core/constants/color.dart';
 import 'package:idoc_admin_side/logic/blocs/category/category_bloc.dart';
 import 'package:idoc_admin_side/logic/blocs/category/category_event.dart';
 import 'package:idoc_admin_side/logic/blocs/category/category_state.dart';
+import 'package:idoc_admin_side/presentation/screens/services/add_service/widgets/add_category/add_category_button.dart';
+import 'package:idoc_admin_side/presentation/screens/services/add_service/widgets/add_category/pick_image_button.dart';
 
 class ActionButtons extends StatelessWidget {
   final File? selectedImage;
@@ -18,77 +19,43 @@ class ActionButtons extends StatelessWidget {
     required this.nameController,
   });
 
+  bool get _isUploading => state is CategoryUploading;
+
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Expanded(
-          child: OutlinedButton.icon(
-            onPressed: () {
-              context.read<CategoryBloc>().add(const PickImageEvent());
-            },
-            icon: const Icon(Icons.image),
-            label: Text(selectedImage != null ? 'Change Image' : 'Pick Image'),
-            style: OutlinedButton.styleFrom(
-              foregroundColor: primaryColor,
-              side: BorderSide(color: primaryColor.withValues(alpha: 0.3)),
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-          ),
-        ),
+        Expanded(child: PickImageButton(selectedImage: selectedImage)),
         const SizedBox(width: 16),
         Expanded(
-          child: ElevatedButton.icon(
-            onPressed:
-                selectedImage == null
-                    ? null
-                    : () => _addCategory(context, selectedImage!),
-            icon:
-                state is CategoryUploading
-                    ? const SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                      ),
-                    )
-                    : const Icon(Icons.add_rounded),
-            label: Text(
-              state is CategoryUploading ? 'Adding...' : 'Add Category',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-            ),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: primaryColor,
-              foregroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              disabledBackgroundColor: Colors.grey.shade300,
-            ),
+          child: AddCategoryButton(
+            selectedImage: selectedImage,
+            isUploading: _isUploading,
+            onTap: () => _submit(context),
           ),
         ),
       ],
     );
   }
 
-  void _addCategory(BuildContext context, File image) {
-    if (nameController.text.trim().isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Please enter a category name'),
-          backgroundColor: Colors.orange,
-        ),
-      );
+  void _submit(BuildContext context) {
+    final name = nameController.text.trim();
+
+    if (name.isEmpty) {
+      _showSnackBar(context, 'Please enter a category name', Colors.orange);
       return;
     }
 
+    if (selectedImage == null) return;
+
     context.read<CategoryBloc>().add(
-      AddCategoryEvent(name: nameController.text.trim(), image: image),
+          AddCategoryEvent(name: name, image: selectedImage!),
+        );
+  }
+
+  void _showSnackBar(BuildContext context, String message, Color color) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message), backgroundColor: color),
     );
   }
 }
